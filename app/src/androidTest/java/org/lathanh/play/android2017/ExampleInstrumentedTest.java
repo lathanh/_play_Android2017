@@ -1,4 +1,4 @@
-package play.lathanh.org.android2017;
+package org.lathanh.play.android2017;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

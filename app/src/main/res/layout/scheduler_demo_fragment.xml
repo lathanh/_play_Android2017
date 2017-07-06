@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+  <data>
+    <import type="android.view.View"/>
+    <variable name="userVm"
+              type="org.lathanh.play.android2017.demo.scheduler.SchedulerDemoFragment.UserViewModel"/>
+  </data>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+      <!-- LoadingState: Initial -->
+      <FrameLayout
+          android:id="@+id/ls_initial"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:background="#ffcccc"
+          android:visibility="@{userVm.text1.value == null ? View.VISIBLE : View.INVISIBLE}">
+        <Button
+            android:text="Load Data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/button"
+            />
+            <!--TODO-->
+            <!--android:onClick="@{(view) -> userVm.onClick()}"-->
+            <!--/>-->
+      </FrameLayout>
+
+      <!-- LoadingState: Loading -->
+      <FrameLayout
+          android:id="@+id/ls_loading"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:background="#ccffcc"
+          android:visibility="invisible">
+          <!--TODO-->
+          <!--android:visibility="@{userVm.text1 == null ? View.VISIBLE : View.INVISIBLE}">-->
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+      </FrameLayout>
+
+      <!-- LoadingState: Content -->
+      <FrameLayout
+          android:id="@+id/ls_content"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:background="#ccccff"
+          android:visibility="@{userVm.text1.value != null ? View.VISIBLE : View.INVISIBLE}">
+        <TextView
+            android:text="@{userVm.text1.value}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/data_string"/>
+      </FrameLayout>
+
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:background="#ffffcc"
+          android:text="@{userVm.text1.value}"
+          />
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:background="#ffccff"
+          android:text="@{userVm.text2.value}"
+          />
+
+    </LinearLayout>
+</layout>
