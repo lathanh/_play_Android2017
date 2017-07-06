@@ -1,4 +1,4 @@
-package play.lathanh.org.android2017;
+package org.lathanh.play.android2017;
 
 import org.junit.Test;
 
