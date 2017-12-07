@@ -6,69 +6,53 @@
               type="org.lathanh.play.android2017.demo.scheduler.SchedulerDemoFragment.UserViewModel"/>
   </data>
 
-    <LinearLayout
+  <FrameLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent">
+
+    <!-- LoadingState: Initial -->
+    <FrameLayout
+        android:id="@+id/ls_initial"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-      <!-- LoadingState: Initial -->
-      <FrameLayout
-          android:id="@+id/ls_initial"
+        android:layout_gravity="center"
+        android:visibility="@{userVm == null ? View.VISIBLE : View.INVISIBLE}">
+      <Button
+          android:text="Load Data"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:background="#ffcccc"
-          android:visibility="@{userVm.text1.value == null ? View.VISIBLE : View.INVISIBLE}">
-        <Button
-            android:text="Load Data"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/button"
-            />
-            <!--TODO-->
-            <!--android:onClick="@{(view) -> userVm.onClick()}"-->
-            <!--/>-->
-      </FrameLayout>
+          android:id="@+id/button"/>
+    </FrameLayout>
 
-      <!-- LoadingState: Loading -->
-      <FrameLayout
-          android:id="@+id/ls_loading"
+    <!-- LoadingState: Loading -->
+    <FrameLayout
+        android:id="@+id/ls_loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="@{userVm != null &amp;&amp; userVm.text1 == null ? View.VISIBLE : View.INVISIBLE}">
+      <ProgressBar
           android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:background="#ccffcc"
-          android:visibility="invisible">
-          <!--TODO-->
-          <!--android:visibility="@{userVm.text1 == null ? View.VISIBLE : View.INVISIBLE}">-->
-        <ProgressBar
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-      </FrameLayout>
+          android:layout_height="wrap_content"/>
+    </FrameLayout>
 
-      <!-- LoadingState: Content -->
-      <FrameLayout
-          android:id="@+id/ls_content"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:background="#ccccff"
-          android:visibility="@{userVm.text1.value != null ? View.VISIBLE : View.INVISIBLE}">
-        <TextView
-            android:text="@{userVm.text1.value}"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/data_string"/>
-      </FrameLayout>
-
+    <!-- LoadingState: Content -->
+    <LinearLayout
+        android:id="@+id/ls_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:visibility="@{userVm.text1 != null ? View.VISIBLE : View.INVISIBLE}">
       <TextView
+          android:text="@{userVm.text1}"
           android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:background="#ffffcc"
-          android:text="@{userVm.text1.value}"
-          />
+          android:layout_height="wrap_content"/>
       <TextView
+          android:text="@{userVm.text2}"
           android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:background="#ffccff"
-          android:text="@{userVm.text2.value}"
-          />
-
+          android:layout_height="wrap_content"/>
     </LinearLayout>
+  </FrameLayout>
+
 </layout>

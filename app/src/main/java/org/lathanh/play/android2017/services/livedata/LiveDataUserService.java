@@ -32,8 +32,9 @@ public class LiveDataUserService {
       }
     };
 
-    ExecutorService executor = Executors.newCachedThreadPool();
+    ExecutorService executor = Executors.newSingleThreadExecutor();
     executor.submit(callable);
+    executor.shutdown();
 
     return userLiveData;
   }
